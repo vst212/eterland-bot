@@ -1,10 +1,10 @@
-# eterland-bot
-Eterland 机器人 (可除土丘) https://eterland.app/
+# Eterland Bot
+Eterland 機器人 (可除土丘) https://eterland.app/
 可協助訂制，技術探討 Telegram: https://t.me/gamefifamily
 
 ![image](https://user-images.githubusercontent.com/47769540/148819746-44e86be5-f067-4c99-b5c3-4d318c914d0b.png)
 
-# 本代码完全开源，功能已经全面，欢迎提交改进，对您有帮助可以捐赠！
+# 本代碼完全開源，功能已未全面，歡迎提交改進，對您有幫助可以捐赠！
 
 # 使用方法:
   登陆游戏
