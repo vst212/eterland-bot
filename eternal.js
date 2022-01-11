@@ -1,22 +1,102 @@
-const num_of_map=1;
-const POPUP_APPEAR_TIMER = 5 * 1000;
+const num_of_map=2;
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
 async function delay(ms = 1000) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
+
 async function connect() {
   const longin_btn = document.getElementsByClassName('bnt-login-nav')[0];
   const connect_btn = document.getElementsByClassName('subtitle-small btn-register')[0];
-  if (longin_btn && longin_btn.innerText === ' Login ') {
+  if (longin_btn && longin_btn.innerText === 'Login') {
     longin_btn.click();
 	console.log(`Login Pressed`);
-    await delay(POPUP_APPEAR_TIMER);
   }
-    
+ await delay(3000);
   if (connect_btn && connect_btn.innerText === 'Connect') {
     connect_btn.click();
     console.log(`Connect Pressed`);
-    await delay(POPUP_APPEAR_TIMER);
+
   }
+}
+
+async function claim_crystal(){
+
+	if(document.getElementsByClassName('number-frags')[0].innerText==='0.00')
+	{}
+	else{
+		document.getElementsByClassName('d-flex content-coin-token align-items-center justify-content-between')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-one')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		}
+}
+
+
+async function claim_crystal1(){
+	for (let i = 0; i < 6; i++) {
+	if(document.getElementsByClassName('number-frags')[i].innerText==='0.00')
+	{}
+	else{
+		document.getElementsByClassName('d-flex content-coin-token align-items-center justify-content-between')[0].click();
+		await delay(3000);
+		switch(i){
+		case '0':
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-one')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		break;
+		case '1':
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-two')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		break;
+		case '2':
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-three')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		break;
+		case '3':
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-four')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		break;
+		case '4':
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-five')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		break;
+		case '5':
+		document.getElementsByClassName('d-flex content-frag-modal-shop align-items-center justify-content-center border-content-modal-shop-six')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('btn-max-change-frags title-smaller-blue')[0].click();
+		await delay(3000);
+		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+		break;
+		}
+	}
+}
 }
 
 async function peak_purchase() {
@@ -34,36 +114,65 @@ document.querySelector("body > app-root > app-skeleton > app-expedition-layout >
 }
 }
 
-//has problem
-async function compass_purchase() {
-const compass_qty = document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > app-nav-materials > div > div.container-materials > div:nth-child(2) > div > div > input").value;
-  while (compass_qty<num_of_map) {
-    console.log(`"compass is out of stock, go shopping`);
-	//go to shop
-document.querySelector("#shop").click();
-//select compass to buy
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-tab > div > div > div > app-shop > div > div > div:nth-child(1) > div > div.content-card-item-shop > div:nth-child(2) > button").click();
-//add qty:1
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-tab > div > div > div > app-shop > div > div > div:nth-child(1) > div > app-modal-shop > div > div > div.modal-shop-body > div > div.d-flex.w-100.h-100 > div.d-flex.flex-column.h-auto.justify-content-between.w-100 > div.d-flex.w-100.justify-content-between.shop-input > label:nth-child(2) > div > div > button.btn-arrow-top-unds").click();
-//make purchase complete
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-tab > div > div > div > app-shop > div > div > div:nth-child(1) > div > app-modal-shop > div > div > div.modal-shop-body > div > button").click()
-}
-console.log('Finish purchase compass');
-}
+
 
 async function claim_common(){
-	
-if(document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-header-frags > div > div > div > div:nth-child(1) > div > div > span").value>0)
-{
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > app-header-lvl > div > div.align-items-center.content-global-tokens > button:nth-child(1)").click()
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > app-header-lvl > div > div.align-items-center.content-global-tokens > app-modal-change-token > div > div > div.modal-shop-body.w-100 > app-change-frags > div > div.d-flex.w-100 > div > div.d-flex.w-100.justify-content-between.mb-2 > label > div > button").click()
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > app-header-lvl > div > div.align-items-center.content-global-tokens > app-modal-change-token > div > div > div.modal-shop-body.w-100 > app-change-frags > div > div.d-flex.flex-column.justify-content-around.h-100 > button").click()
+  const i=0;
+  const checking_time=num_of_map;
+  for (let i = 0; i < checking_time; i++) {
+const btn = document.getElementsByClassName('btn-claim-expedition subtitle-smaller')[i];
+    if (btn && btn.innerText === 'Claim') {
+btn.click();
+await delay(3000);
+console.log("claim button clicked");
+document.getElementsByClassName('number-one')[0].click();
+await delay(3000);
+console.log("number 1 reward selected");
+document.getElementsByClassName('btn-claim text-subtitle-big-white')[0].click();
+await delay(3000);
+console.log("reward claimed");
+document.getElementsByClassName('btn-claim text-subtitle-big-white')[0].click();
+await delay(3000);
+console.log("reward page closed"); 
+}
+  }
 }
 
+async function deposite_common(){
+  const checking_time=num_of_map;
+  for (let i = 0; i < checking_time; i++) {
+	
+if(document.getElementsByClassName('btn-active-card-deposit text-subtitle-regular-white mt-3')[i].innerText==='Activate'){
+
+if (document.getElementsByClassName('text-subtitle-big-white content-accent-title-deposit')[i].innerText === 'Common deposit')
+{if(Common_map>0){
+	document.getElementsByClassName('btn-active-card-deposit text-subtitle-regular-white mt-3')[i].click();
+	await delay(3000);
+	document.getElementsByClassName('btn-plus')[0].click();
+	await delay(3000);
+	document.getElementsByClassName('btn-continue-material text-subtitle-regular-white')[0].click();
+	await delay(3000);
+	console.log('common deposite activated');
+    await tools_inventory();
+	
+}else{
+document.querySelector("#shop").click();
+await delay(3000);
+document.getElementsByClassName('w-100 btn-buy-item-shop')[6].click();
+await delay(3000);
+document.getElementsByClassName('btn-arrow-top-unds')[0].click();
+await delay(3000);
+document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+await tools_inventory();
+console.log('common map purchased');
 }
+}
+}
+}
+}
+
 
 async function remove_monticle() {
-  const i=0;
   const checking_time=num_of_map;
   for (let i = 0; i < checking_time; i++) {
     const btn = document.getElementsByClassName('btn-claim-expedition subtitle-smaller')[i];
@@ -71,16 +180,16 @@ async function remove_monticle() {
 	  await peak_purchase() 
       btn.click();
       console.log(`Removed monticle`);
-      await delay(POPUP_APPEAR_TIMER);
+      await delay(3000);
 	  const btn1 = document.getElementsByClassName('swal2-confirm swal2-styled')[0];
       if (btn1 && btn1.innerText === 'Yes') {
         btn1.click();
         console.log(`Confirmed removal`);
-	  await delay(POPUP_APPEAR_TIMER);
+	  await delay(3000);
 	  }
     } else {
       console.log(`Checking monticle`);
-	    await delay(POPUP_APPEAR_TIMER);
+	    await delay(3000);
     }
   }
 }
@@ -101,14 +210,110 @@ async function expedition() {
 } else {
   console.log("Logged out");
   await connect();
-  await delay(POPUP_APPEAR_TIMER);
+  await delay(3000);
 }
 }
+
+
+async function expedition_compass(){
+  const checking_time=num_of_map;
+  for (let i = 0; i < checking_time; i++) {
+	if(document.getElementsByClassName('subtitle-smaller d-flex align-items-center accent-red')[i])
+	{
+		if(Compass>0)
+		{
+			document.getElementsByClassName('content-compass-expedition d-flex justify-content-center align-items-center')[i].click();
+			await tools_inventory();
+			}
+else{
+document.querySelector("#shop").click();
+await delay(3000);
+document.getElementsByClassName('w-100 btn-buy-item-shop')[0].click();
+await delay(3000);
+document.getElementsByClassName('btn-arrow-top-unds')[0].click();
+await delay(3000);
+document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+await tools_inventory();
+console.log('Compass purchased');}
+}
+else{}
+}
+}
+
+let Peak = 0 ;
+let Compass = 0 ;
+let Legendary_map = 0 ;
+let Rare_map = 0 ;
+let Uncommon_map = 0 ;
+let Mythical_map = 0 ;
+let Common_map = 0 ;
+let Epic_map = 0 ;
+
+
+async function tools_inventory(){
+	try{
+for (let i = 0; i < 8; i++) {
+switch(document.getElementsByClassName('text-subtitle-big-white mb-2 title-nav-materials')[i].innerText){
+	case 'Peak':
+	Peak= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Compass':
+	Compass= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Legendary map':
+	Legendary_map= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Rare map':
+	Rare_map= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Uncommon map':
+	Uncommon_map= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Mythical map':
+	Mythical_map= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Common map':
+	Common_map= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+	case 'Epic map':
+	Epic_map= document.getElementsByClassName('input-quantity-material position-absolute text-center')[i].value;
+	break;
+}
+}
+	}catch{}
+}
+
+
+async function tools_inventory_print(){
+	console.log('Peak: '+Peak);
+	console.log('Compass: '+Compass);
+	console.log('Legendary_map: '+Legendary_map);
+	console.log('Rare_map: '+Rare_map);
+	console.log('Uncommon_map: '+Uncommon_map);
+	console.log('Mythical_map: '+Mythical_map);
+	console.log('Common_map: '+Common_map);
+	console.log('Epic_map: '+Epic_map);
+}
+
+await tools_inventory();
+await tools_inventory_print();
+
 while(true) {
 	await connect();
+	await delay(3000);
+	await claim_crystal();
+	await delay(3000);
 	await claim_common();
+	await delay(3000);
 	await expedition();
+	await delay(3000);
+	await expedition_compass();
+	await delay(3000);
 	await remove_monticle();
+	await delay(3000);
 	await deposite();
+	await delay(3000);
+	await deposite_common();
+
 }
 
