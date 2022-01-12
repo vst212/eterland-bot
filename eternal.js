@@ -299,6 +299,7 @@ await tools_inventory();
 await tools_inventory_print();
 
 while(true) {
+	try{
 	await connect();
 	await delay(3000);
 	await claim_crystal();
@@ -314,6 +315,6 @@ while(true) {
 	await deposite();
 	await delay(3000);
 	await deposite_common();
-
+	}catch{}
 }
 
