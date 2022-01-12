@@ -29,7 +29,7 @@ async function connect() {
 }
 
 async function claim_crystal(){
-
+if(document.getElementsByClassName('number-frags')[0]){
 	if(document.getElementsByClassName('number-frags')[0].innerText==='0.00')
 	{}
 	else{
@@ -42,7 +42,7 @@ async function claim_crystal(){
 		document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
 		}
 }
-
+}
 
 async function claim_crystal1(){
 	for (let i = 0; i < 6; i++) {
@@ -99,21 +99,6 @@ async function claim_crystal1(){
 }
 }
 
-async function peak_purchase() {
-const peak_qty = document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > app-nav-materials > div > div.container-materials > div:nth-child(1) > div > div > input").value;
-  if (peak_qty==0) {
-    console.log(`"Peak is out of stock, go shopping`);
-	//go to shop
-document.querySelector("#shop").click();
-//select peak to buy
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-tab > div > div > div > app-shop > div > div > div:nth-child(2) > div > div.content-card-item-shop > div:nth-child(2) > button").click();
-//add qty:1
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-tab > div > div > div > app-shop > div > div > div:nth-child(2) > div > app-modal-shop > div > div > div.modal-shop-body > div > div > div.d-flex.flex-column.h-auto.justify-content-between.w-100 > div.d-flex.w-100.justify-content-between.shop-input > label:nth-child(2) > div > div > button.btn-arrow-top-unds").click();
-//make purchase complete
-document.querySelector("body > app-root > app-skeleton > app-expedition-layout > app-dashboard > main > div > div > app-tab > div > div > div > app-shop > div > div > div:nth-child(2) > div > app-modal-shop > div > div > div.modal-shop-body > div > button").click()
-}
-}
-
 
 
 async function claim_common(){
@@ -142,8 +127,8 @@ async function deposite_common(){
   const checking_time=num_of_map;
   for (let i = 0; i < checking_time; i++) {
 	
-if(document.getElementsByClassName('btn-active-card-deposit text-subtitle-regular-white mt-3')[i].innerText==='Activate'){
-
+if(document.getElementsByClassName('btn-active-card-deposit text-subtitle-regular-white mt-3')[i]){
+await delay(3000);
 if (document.getElementsByClassName('text-subtitle-big-white content-accent-title-deposit')[i].innerText === 'Common deposit')
 {if(Common_map>0){
 	document.getElementsByClassName('btn-active-card-deposit text-subtitle-regular-white mt-3')[i].click();
@@ -165,6 +150,7 @@ await delay(3000);
 document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
 await tools_inventory();
 console.log('common map purchased');
+await deposite();
 }
 }
 }
@@ -175,15 +161,29 @@ console.log('common map purchased');
 async function remove_monticle() {
   const checking_time=num_of_map;
   for (let i = 0; i < checking_time; i++) {
-    const btn = document.getElementsByClassName('btn-claim-expedition subtitle-smaller')[i];
-    if (btn && btn.innerText === 'Remove monticle') {
-	  await peak_purchase() 
-      btn.click();
+	  const btn_no_peak = document.getElementsByClassName('btn-claim-expedition subtitle-smaller btn-disabled')[i];
+    if (btn_no_peak && btn_no_peak.innerText === 'Not enought peaks') {
+document.querySelector("#shop").click();
+await delay(3000);
+document.getElementsByClassName('w-100 btn-buy-item-shop')[1].click();
+await delay(3000);
+document.getElementsByClassName('btn-arrow-top-unds')[0].click();
+await delay(3000);
+document.getElementsByClassName('text-subtitle-regular-white btn-buy-modal-shop w-100 mt-3')[0].click();
+await tools_inventory();
+console.log('Peak purchased');
+await delay(3000);
+document.querySelector("#expedition").click();
+await delay(3000);
+}
+    const btn_monticle = document.getElementsByClassName('btn-claim-expedition subtitle-smaller')[i];
+    if (btn_monticle && btn_monticle.innerText === 'Remove monticle') {
+      btn_monticle.click();
       console.log(`Removed monticle`);
       await delay(3000);
-	  const btn1 = document.getElementsByClassName('swal2-confirm swal2-styled')[0];
-      if (btn1 && btn1.innerText === 'Yes') {
-        btn1.click();
+	  const btn_monticle_yes = document.getElementsByClassName('swal2-confirm swal2-styled')[0];
+      if (btn_monticle_yes && btn_monticle_yes.innerText === 'Yes') {
+        btn_monticle_yes.click();
         console.log(`Confirmed removal`);
 	  await delay(3000);
 	  }
